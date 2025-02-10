@@ -36,6 +36,11 @@ const SystemFlowDiagram = ({
   const animationRef = useRef<number | null>(null);
   const nodesRef = useRef<Node[]>([]);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dynamicValuesRef = useRef({
+    currentPulseSpawnRate: pulseSpawnRate,
+    currentConnectionProbability: connectionProbability
+  });
 
   const initializeNodes = (width: number, height: number) => {
     const nodes: Node[] = [];
@@ -128,8 +133,8 @@ const SystemFlowDiagram = ({
         return true;
       });
 
-      // Spawn new pulses
-      if (Math.random() < pulseSpawnRate && node.connections.length > 0) {
+      // Spawn new pulses with dynamic rate
+      if (Math.random() < dynamicValuesRef.current.currentPulseSpawnRate && node.connections.length > 0) {
         const targetIndex =
           node.connections[Math.floor(Math.random() * node.connections.length)];
         node.pulses.push({
@@ -174,12 +179,29 @@ const SystemFlowDiagram = ({
     nodesRef.current = initializeNodes(rect.width, rect.height);
   };
 
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    const scrollProgress = 1 - (rect.top) / (window.innerHeight);
+    
+    // Increase spawn rate up to 50x the original rate as user scrolls
+    dynamicValuesRef.current.currentPulseSpawnRate = 
+      pulseSpawnRate * (1 + Math.max(0, scrollProgress) * 50);
+    
+    // Increase connection probability up to 2x the original as user scrolls
+    dynamicValuesRef.current.currentConnectionProbability = 
+      connectionProbability * (1 + Math.max(0, scrollProgress));
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     contextRef.current = canvas.getContext("2d");
     handleResize();
+    handleScroll(); // Initial scroll check
     animate();
 
     let resizeTimeout: NodeJS.Timeout;
@@ -189,15 +211,21 @@ const SystemFlowDiagram = ({
     };
 
     window.addEventListener("resize", debouncedResize);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       cancelAnimationFrame(animationRef.current!);
       window.removeEventListener("resize", debouncedResize);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <div className="relative w-full h-full" style={{ backgroundColor }}>
+    <div 
+      ref={containerRef}
+      className="relative w-full h-full" 
+      style={{ backgroundColor }}
+    >
       <canvas ref={canvasRef} className="block w-full h-full" />
     </div>
   );

@@ -30,6 +30,7 @@ const NodeSphere = ({
   const animationRef = useRef<number | null>(null);
   const nodesRef = useRef<Node3D[]>([]);
   const angleRef = useRef(0);
+  const isActivatingRef = useRef(true);
 
   const createNodes = () => {
     const nodes: Node3D[] = [];
@@ -155,16 +156,31 @@ const NodeSphere = ({
       ctx.fill();
     });
 
-    // Decay node activity
-    nodesRef.current.forEach((node) => {
-      node.activity *= 0.95;
-    });
+    // Count active nodes
+    const activeNodes = nodesRef.current.filter(node => node.activity > 0.5).length;
+    const activePercentage = (activeNodes / nodeCount) * 100;
 
-    // Randomly activate nodes
+    // Switch states if we hit the thresholds
+    if (isActivatingRef.current && activePercentage >= 90) {
+      isActivatingRef.current = false;
+    } else if (!isActivatingRef.current && activePercentage <= 10) {
+      isActivatingRef.current = true;
+    }
+
+    // Randomly activate or deactivate based on current state
     if (Math.random() < 0.05) {
-      const randomNode =
-        nodesRef.current[Math.floor(Math.random() * nodeCount)];
-      randomNode.activity = 1;
+      const inactiveNodes = nodesRef.current.filter(node => node.activity <= 0.5);
+      const activeNodes = nodesRef.current.filter(node => node.activity > 0.5);
+      
+      if (isActivatingRef.current && inactiveNodes.length > 0) {
+        // Activate a random inactive node
+        const randomNode = inactiveNodes[Math.floor(Math.random() * inactiveNodes.length)];
+        randomNode.activity = 1;
+      } else if (!isActivatingRef.current && activeNodes.length > 0) {
+        // Deactivate a random active node
+        const randomNode = activeNodes[Math.floor(Math.random() * activeNodes.length)];
+        randomNode.activity = 0;
+      }
     }
   };
 
