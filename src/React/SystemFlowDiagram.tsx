@@ -39,7 +39,7 @@ const SystemFlowDiagram = ({
 
   const initializeNodes = (width: number, height: number) => {
     const nodes: Node[] = [];
-    
+
     // Create nodes with random positions
     for (let i = 0; i < nodeCount; i++) {
       const radius = Math.random() * 3 + 2;
@@ -76,7 +76,7 @@ const SystemFlowDiagram = ({
 
     // Draw connections
     nodesRef.current.forEach((node, index) => {
-      node.connections.forEach(targetIndex => {
+      node.connections.forEach((targetIndex) => {
         const target = nodesRef.current[targetIndex];
         ctx.beginPath();
         ctx.strokeStyle = `rgba(94, 68, 145, ${0.1 + (node.activity + target.activity) * 0.2})`;
@@ -93,7 +93,7 @@ const SystemFlowDiagram = ({
         const target = nodesRef.current[pulse.targetIndex];
         const x = node.x + (target.x - node.x) * pulse.progress;
         const y = node.y + (target.y - node.y) * pulse.progress;
-        
+
         ctx.beginPath();
         ctx.fillStyle = pulse.color;
         ctx.arc(x, y, 2, 0, Math.PI * 2);
@@ -102,10 +102,16 @@ const SystemFlowDiagram = ({
     });
 
     // Draw nodes
-    nodesRef.current.forEach(node => {
+    nodesRef.current.forEach((node) => {
       ctx.beginPath();
       ctx.fillStyle = primaryColor;
-      ctx.arc(node.x, node.y, node.radius * (1 + node.activity * 0.5), 0, Math.PI * 2);
+      ctx.arc(
+        node.x,
+        node.y,
+        node.radius * (1 + node.activity * 0.5),
+        0,
+        Math.PI * 2,
+      );
       ctx.fill();
     });
   };
@@ -113,7 +119,7 @@ const SystemFlowDiagram = ({
   const updateSystem = () => {
     nodesRef.current.forEach((node, nodeIndex) => {
       // Update existing pulses
-      node.pulses = node.pulses.filter(pulse => {
+      node.pulses = node.pulses.filter((pulse) => {
         pulse.progress += pulseSpeed;
         if (pulse.progress >= 1) {
           nodesRef.current[pulse.targetIndex].activity = 0.8;
@@ -124,7 +130,8 @@ const SystemFlowDiagram = ({
 
       // Spawn new pulses
       if (Math.random() < pulseSpawnRate && node.connections.length > 0) {
-        const targetIndex = node.connections[Math.floor(Math.random() * node.connections.length)];
+        const targetIndex =
+          node.connections[Math.floor(Math.random() * node.connections.length)];
         node.pulses.push({
           progress: 0,
           targetIndex,
@@ -196,4 +203,4 @@ const SystemFlowDiagram = ({
   );
 };
 
-export default SystemFlowDiagram; 
+export default SystemFlowDiagram;

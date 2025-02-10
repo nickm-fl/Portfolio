@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface TypewriterEffectProps {
   text: string | string[];
@@ -9,16 +9,18 @@ interface TypewriterEffectProps {
   showCursor?: boolean;
 }
 
-export default function TypewriterEffect({ 
-  text, 
-  delay = 100, 
-  className = "", 
+export default function TypewriterEffect({
+  text,
+  delay = 100,
+  className = "",
   onComplete,
   startDelay = 0,
-  showCursor = true
+  showCursor = true,
 }: TypewriterEffectProps) {
   const textArray = Array.isArray(text) ? text : [text];
-  const [displayLines, setDisplayLines] = useState<string[]>(Array(textArray.length).fill(''));
+  const [displayLines, setDisplayLines] = useState<string[]>(
+    Array(textArray.length).fill(""),
+  );
   const [currentLine, setCurrentLine] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [hasStarted, setHasStarted] = useState(false);
@@ -36,24 +38,24 @@ export default function TypewriterEffect({
     if (!hasStarted) return;
 
     const currentText = textArray[currentLine];
-    
+
     if (currentIndex < currentText.length) {
       const timeout = setTimeout(() => {
-        setDisplayLines(prev => {
+        setDisplayLines((prev) => {
           const newLines = [...prev];
           newLines[currentLine] = currentText.slice(0, currentIndex + 1);
           return newLines;
         });
-        setCurrentIndex(prev => prev + 1);
+        setCurrentIndex((prev) => prev + 1);
       }, delay);
 
       return () => clearTimeout(timeout);
     } else if (currentLine < textArray.length - 1) {
       const timeout = setTimeout(() => {
-        setCurrentLine(prev => prev + 1);
+        setCurrentLine((prev) => prev + 1);
         setCurrentIndex(0);
       }, delay * 2);
-      
+
       return () => clearTimeout(timeout);
     } else if (onComplete) {
       onComplete();
@@ -65,9 +67,11 @@ export default function TypewriterEffect({
       {displayLines.map((line, index) => (
         <span key={index}>
           {line}
-          {showCursor && index === currentLine && <span className="animate-blink">|</span>}
+          {showCursor && index === currentLine && (
+            <span className="animate-blink">|</span>
+          )}
         </span>
       ))}
     </span>
   );
-} 
+}

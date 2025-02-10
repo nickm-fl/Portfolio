@@ -58,8 +58,8 @@ const NodeSphere = ({
         if (i !== j) {
           const distance = Math.sqrt(
             Math.pow(node.x - otherNode.x, 2) +
-            Math.pow(node.y - otherNode.y, 2) +
-            Math.pow(node.z - otherNode.z, 2)
+              Math.pow(node.y - otherNode.y, 2) +
+              Math.pow(node.z - otherNode.z, 2),
           );
           if (distance < radius * 0.6) {
             node.connections.push(j);
@@ -103,18 +103,19 @@ const NodeSphere = ({
     const centerY = height / (2 * (window.devicePixelRatio || 1));
 
     // Adjusted scale factor to make sphere larger
-    const scaleFactor = Math.min(width, height) / (radius * 3 * (window.devicePixelRatio || 1));
+    const scaleFactor =
+      Math.min(width, height) / (radius * 3 * (window.devicePixelRatio || 1));
 
     // Update rotation angle
     angleRef.current += rotationSpeed;
 
     // Rotate and project all nodes
-    const projectedNodes = nodesRef.current.map(node => {
+    const projectedNodes = nodesRef.current.map((node) => {
       const rotated = rotateY(node.x, node.y, node.z, angleRef.current);
       const projected = project(
         rotated.x * scaleFactor,
         rotated.y * scaleFactor,
-        rotated.z * scaleFactor
+        rotated.z * scaleFactor,
       );
       return {
         ...projected,
@@ -127,10 +128,11 @@ const NodeSphere = ({
     // Draw connections
     nodesRef.current.forEach((node, i) => {
       const projected1 = projectedNodes[i];
-      node.connections.forEach(j => {
+      node.connections.forEach((j) => {
         const projected2 = projectedNodes[j];
-        const opacity = connectionOpacity * 
-          Math.min(projected1.scale, projected2.scale) * 
+        const opacity =
+          connectionOpacity *
+          Math.min(projected1.scale, projected2.scale) *
           (1 + Math.max(node.activity, nodesRef.current[j].activity));
 
         ctx.beginPath();
@@ -146,23 +148,22 @@ const NodeSphere = ({
     projectedNodes.forEach((projected, i) => {
       const node = nodesRef.current[i];
       const nodeSize = 2 + projected.scale * (2 + node.activity * 3);
-      
+
       ctx.beginPath();
-      ctx.fillStyle = node.activity > 0 
-        ? activeNodeColor 
-        : nodeColor;
+      ctx.fillStyle = node.activity > 0 ? activeNodeColor : nodeColor;
       ctx.arc(projected.x, projected.y, nodeSize, 0, Math.PI * 2);
       ctx.fill();
     });
 
     // Decay node activity
-    nodesRef.current.forEach(node => {
+    nodesRef.current.forEach((node) => {
       node.activity *= 0.95;
     });
 
     // Randomly activate nodes
     if (Math.random() < 0.05) {
-      const randomNode = nodesRef.current[Math.floor(Math.random() * nodeCount)];
+      const randomNode =
+        nodesRef.current[Math.floor(Math.random() * nodeCount)];
       randomNode.activity = 1;
     }
   };
@@ -181,7 +182,7 @@ const NodeSphere = ({
 
     const dpr = window.devicePixelRatio || 1;
     const rect = parent.getBoundingClientRect();
-    
+
     // Set canvas size to match parent dimensions
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -224,4 +225,4 @@ const NodeSphere = ({
   );
 };
 
-export default NodeSphere; 
+export default NodeSphere;
