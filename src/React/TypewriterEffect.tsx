@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 interface TypewriterEffectProps {
-  text: string;
+  text: string | string[];
   delay?: number;
   className?: string;
   onComplete?: () => void;
@@ -17,7 +17,9 @@ export default function TypewriterEffect({
   startDelay = 0,
   showCursor = true
 }: TypewriterEffectProps) {
-  const [displayText, setDisplayText] = useState('');
+  const textArray = Array.isArray(text) ? text : [text];
+  const [displayLines, setDisplayLines] = useState<string[]>(Array(textArray.length).fill(''));
+  const [currentLine, setCurrentLine] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -33,22 +35,39 @@ export default function TypewriterEffect({
   useEffect(() => {
     if (!hasStarted) return;
 
-    if (currentIndex < text.length) {
+    const currentText = textArray[currentLine];
+    
+    if (currentIndex < currentText.length) {
       const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
+        setDisplayLines(prev => {
+          const newLines = [...prev];
+          newLines[currentLine] = currentText.slice(0, currentIndex + 1);
+          return newLines;
+        });
         setCurrentIndex(prev => prev + 1);
       }, delay);
 
       return () => clearTimeout(timeout);
+    } else if (currentLine < textArray.length - 1) {
+      const timeout = setTimeout(() => {
+        setCurrentLine(prev => prev + 1);
+        setCurrentIndex(0);
+      }, delay * 2);
+      
+      return () => clearTimeout(timeout);
     } else if (onComplete) {
       onComplete();
     }
-  }, [currentIndex, text, delay, hasStarted, onComplete]);
+  }, [currentIndex, currentLine, textArray, delay, hasStarted, onComplete]);
 
   return (
-    <span className={`${className} font-mono`}>
-      {displayText}
-      {showCursor && <span className="animate-blink">|</span>}
+    <span className={`${className} font-mono flex flex-col`}>
+      {displayLines.map((line, index) => (
+        <span key={index}>
+          {line}
+          {showCursor && index === currentLine && <span className="animate-blink">|</span>}
+        </span>
+      ))}
     </span>
   );
 } 

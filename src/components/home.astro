@@ -4,6 +4,8 @@ import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
 import PlatformsShowcase from "../components/PlatformsShowcase.astro";
 import TypewriterEffect from "../React/TypewriterEffect.tsx";
+import SystemFlowDiagram from "@/React/SystemFlowDiagram";
+import NodeSphere from "../React/NodeSphere.tsx";
 ---
 
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
@@ -24,7 +26,7 @@ import TypewriterEffect from "../React/TypewriterEffect.tsx";
           <h1 class="text-[var(--white)] text-5xl md:text-6xl font-medium text-pretty leading-none min-w-[300px] md:min-w-[400px]">
             <TypewriterEffect 
               client:load 
-              text="Software Engineer" 
+              text={['Software', 'Engineer']}
               startDelay={2000}
               showCursor={true}
             />
@@ -57,19 +59,33 @@ import TypewriterEffect from "../React/TypewriterEffect.tsx";
   
     <div class="flex flex-col lg:flex-row items-center gap-8">
       <SkillsList client:load />
-      <div class="flex justify-center md:w-full md:h-[292px] size-[290px] pt-3 md:pt-9 md:ml-16">
-        <LetterGlitch
-          client:load
-          glitchColors={["#5e4491", "#A476FF", "#241a38"]}
-          glitchSpeed={33}
-          centerVignette={false}
-          outerVignette={true}
-          smooth={true}
+      <div class="flex justify-center w-[300px] h-[300px] md:w-[400px] md:h-[400px] pt-3 md:pt-9 md:ml-16">
+        <SystemFlowDiagram client:load
+          nodeCount={15}
+          backgroundColor="#101010"
+          primaryColor="#A476FF"
+          secondaryColor="#5e4491"
+          pulseSpeed={0.02}
+          connectionProbability={0.3}
+          pulseSpawnRate={0.03}
         />
       </div>
     </div>
 
-    <PlatformsShowcase />
+    <div class="flex flex-col lg:flex-row items-center gap-8">
+      <PlatformsShowcase />
+      <div class="flex justify-center w-[300px] h-[300px] md:w-[400px] md:h-[400px] pt-3 md:pt-9 md:ml-16">
+        <NodeSphere client:load
+          nodeCount={50}
+          radius={30}
+          backgroundColor="#101010"
+          nodeColor="#A476FF"
+          activeNodeColor="#ffffff"
+          rotationSpeed={0.003}
+          connectionOpacity={0.2}
+        />
+      </div>
+    </div>
   </div>
 </section>
 
