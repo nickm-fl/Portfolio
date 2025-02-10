@@ -11,7 +11,7 @@ const CategoryIcons = {
       <path d="M4 16V4H2V2H22V4H20V16H22V18H14V22H10V18H2V16H4ZM6 4V16H18V4H6ZM8 6H16V14H8V6Z" />
     </svg>
   ),
-  "Medical Device Development": (
+  "Medical Device": (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -51,9 +51,9 @@ const SkillsList = () => {
       "Hardware-software interface design",
       "Scalable software architecture",
       "Requirements-driven development",
-      "Performance optimization",
+      "Large scale system design",
     ],
-    "Medical Device Development": [
+    "Medical Device": [
       "IEC 62304 compliance expertise",
       "FDA submission documentation",
       "Experience from first-in-human trials to market",
@@ -79,7 +79,7 @@ const SkillsList = () => {
 
   return (
     <div className="text-left pt-3 md:pt-9">
-      <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold md:mb-6">
+      <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold md:mb-6 text-center">
         Areas of Expertise
       </h3>
       <ul className="space-y-4 mt-4 text-lg">
