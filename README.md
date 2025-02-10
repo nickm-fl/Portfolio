@@ -1,10 +1,6 @@
 # Portfolio
-Developed with passion while listening to _Hurry Up Tomorrow by The Weeknd_. Completed in just 3 days.
-![image](https://github.com/user-attachments/assets/c6c5a107-0eaf-42c2-b8ef-27422d676799)
-[![Deploy Status](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)](tu-url-deploy)  
 
----
-Demo: https://oscarhernandez.vercel.app/
+> This is a fork of the original portfolio project by [Oscar Hernandez (Gothsec)](https://github.com/Gothsec/Portfolio)
 
 ## **Stack**  
 ### **Frontend**  

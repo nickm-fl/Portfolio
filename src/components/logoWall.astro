@@ -1,17 +1,15 @@
 ---
 const technologies = [
-  "astro",
-  "react",
-  "typeScript",
-  "tailwindcss",
-  "nodejs",
-  "HTML5",
-  "CSS3",
-  "javaScript",
-  "git",
-  "supabase",
-  "mysql",
-  "bash"
+  "linux",
+  "cpp",
+  "stm32",
+  "nordic",
+  "bluetooth",
+  "python",
+  "csharp",
+  "react-native",
+  "grpc",
+  "threejs"
 ];
 ---
 
@@ -38,7 +36,14 @@ const technologies = [
           loading="lazy"
         />
         <span class="text-lg font-medium text-[var(--white-icon)]">
-          {tech.charAt(0).toUpperCase() + tech.slice(1)}
+          {tech === 'cpp' ? 'C++' :
+           tech === 'csharp' ? 'C#' :
+           tech === 'stm32' ? 'STM32' :
+           tech === 'grpc' ? 'gRPC' :
+           tech === 'threejs' ? 'Three.js' :
+           tech === 'react-native' ? 'React Native' :
+           tech === 'bluetooth' ? 'BLE' :
+           tech.charAt(0).toUpperCase() + tech.slice(1)}
         </span>
       </div>
     ))}

@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 
 const CategoryIcons = {
-  'Web Development': (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'><path d="M21 3C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H21ZM20 11H4V19H20V11ZM20 5H4V9H20V5ZM11 6V8H9V6H11ZM7 6V8H5V6H7Z"></path></svg>
+  'System Architecture': (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'>
+      <path d="M4 16V4H2V2H22V4H20V16H22V18H14V22H10V18H2V16H4ZM6 4V16H18V4H6ZM8 6H16V14H8V6Z"/>
+    </svg>
   ),
-  'Mobile Development': (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'><path d="M7 4V20H17V4H7ZM6 2H18C18.5523 2 19 2.44772 19 3V21C19 21.5523 18.5523 22 18 22H6C5.44772 22 5 21.5523 5 21V3C5 2.44772 5.44772 2 6 2ZM12 17C12.5523 17 13 17.4477 13 18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18C11 17.4477 11.4477 17 12 17Z"></path></svg>
+  'Medical Device Development': (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'>
+      <path d="M19 8C20.6569 8 22 9.34315 22 11V13C22 14.6569 20.6569 16 19 16H17V20H15V4H19C20.6569 4 22 5.34315 22 7V8H19ZM12 18V20H5C3.34315 20 2 18.6569 2 17V7C2 5.34315 3.34315 4 5 4H12V6H5C4.44772 6 4 6.44772 4 7V17C4 17.5523 4.44772 18 5 18H12ZM19 14C19.5523 14 20 13.5523 20 13V11C20 10.4477 19.5523 10 19 10H17V14H19ZM19 6H17V8H20C20 7.44772 19.5523 7 19 7V6ZM9 8V10H7V12H9V14H11V12H13V10H11V8H9Z"/>
+    </svg>
   ),
-  'UI/UX Design & Prototyping': (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'><path d="M5.7646 7.99998L5.46944 7.26944C5.26255 6.75737 5.50995 6.17454 6.02202 5.96765L15.2939 2.22158C15.8059 2.01469 16.3888 2.26209 16.5956 2.77416L22.2147 16.6819C22.4216 17.194 22.1742 17.7768 21.6622 17.9837L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1772L11.0002 20.9586V21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V19.7303L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L5.7646 7.99998ZM8.00021 19H10.2089L8.00021 13.5333V19ZM6.00021 12.7558L4.32696 16.8972L6.00021 17.6084V12.7558ZM7.69842 7.44741L12.5683 19.5008L19.9858 16.5039L15.1159 4.45055L7.69842 7.44741ZM10.6766 9.47974C10.1645 9.68663 9.5817 9.43924 9.37481 8.92717C9.16792 8.4151 9.41532 7.83227 9.92739 7.62538C10.4395 7.41849 11.0223 7.66588 11.2292 8.17795C11.4361 8.69002 11.1887 9.27286 10.6766 9.47974Z"></path></svg>
+  'Embedded Systems': (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'>
+      <path d="M8 20V14H16V20H19V4H5V20H8ZM10 20H14V16H10V20ZM21 4C21.5523 4 22 4.44772 22 5V19C22 19.5523 21.5523 20 21 20H18V22H6V20H3C2.44772 20 2 19.5523 2 19V5C2 4.44772 2.44772 4 3 4H21ZM8 7V9H16V7H8ZM8 10V12H16V10H8Z"/>
+    </svg>
+  ),
+  'Modern Development': (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className='w-6 h-6 text-[var(--sec)] opacity-70'>
+      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z"/>
+    </svg>
   )
 };
 
@@ -16,19 +27,29 @@ const SkillsList = () => {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   const skills = {
-    'Web Development': [
-      'Single Page Applications (SPAs)',
-      'Landing pages and business websites',
-      'Portfolio websites',
+    'System Architecture': [
+      'Hardware-software interface design',
+      'Scalable software architecture',
+      'Requirements-driven development',
+      'Performance optimization'
     ],
-    'Mobile Development': [
-      'Mobile-friendly web apps',
-      'React Native mobile apps'
+    'Medical Device Development': [
+      'IEC 62304 compliance expertise',
+      'FDA submission documentation',
+      'Experience from first-in-human trials to market',
+      'Risk-based design approach and FMEA expertise'
     ],
-    'UI/UX Design & Prototyping': [
-      'UI design with Figma & Canva',
-      'UX research & improvements',
-      'Prototyping for websites & mobile apps',
+    'Embedded Systems': [
+      'Real-time system development',
+      'Resource-constrained optimization',
+      'Bare metal programming',
+      'RTOS implementation'
+    ],
+    'Modern Development': [
+      'CI/CD pipeline implementation',
+      'Automated testing frameworks',
+      'Modern toolchain integration',
+      'Rapid prototyping practices'
     ]
   };
 
