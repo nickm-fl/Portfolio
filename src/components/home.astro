@@ -9,13 +9,32 @@ import TypewriterEffect from "../React/TypewriterEffect.tsx";
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
   <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
     <div class="text-left space-y-4">
+      <div class="flex justify-center md:hidden mb-8">
+        <img 
+          src="/jpg/Profile_Photo_2023_Cropped.jpg" 
+          alt="Nick Montelibano" 
+          class="size-40 rounded-full object-cover border-2 border-[var(--white-icon-tr)] hover:border-[var(--sec)] transition-colors duration-300"
+        />
+      </div>
       <p class="text-md md:text-lg text-[var(--white-icon)] shiny-white">
-        Hi, I'm <TypewriterEffect client:load text="Nick Montelibano" />
+        Hi, I'm <span class="ml-1"><TypewriterEffect client:load text="Nick Montelibano" showCursor={false} /></span>
       </p>
-      <div class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4">
-        <h1 class="text-[var(--white)] text-5xl md:text-6xl font-medium text-pretty leading-none">
-          Software <br /> Engineer
-        </h1>
+      <div class="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4">
+        <div class="flex items-start gap-6 shrink-0">
+          <h1 class="text-[var(--white)] text-5xl md:text-6xl font-medium text-pretty leading-none min-w-[300px] md:min-w-[400px]">
+            <TypewriterEffect 
+              client:load 
+              text="Software Engineer" 
+              startDelay={2000}
+              showCursor={true}
+            />
+          </h1>
+          <img 
+            src="/jpg/Profile_Photo_2023_Cropped.jpg" 
+            alt="Nick Montelibano" 
+            class="hidden md:block size-20 md:size-32 rounded-full object-cover border-2 border-[var(--white-icon-tr)] hover:border-[var(--sec)] transition-colors duration-300"
+          />
+        </div>
         <p class="text-md md:text-2xl text-[var(--white-icon)]">
           Solving complex engineering challenges and optimizing solutions for
           <span class="text-[var(--sec)] shiny-sec">next-generation</span> hardware and software.
