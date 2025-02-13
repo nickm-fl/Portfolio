@@ -48,7 +48,7 @@ const SystemFlowDiagram = ({
     // Create nodes with random positions
     for (let i = 0; i < nodeCount; i++) {
       const radius = Math.random() * 3 + 2;
-      let x, y;
+      let x: number, y: number;
       let validPosition = false;
       
       // Keep trying positions until we find one that's far enough from other nodes
