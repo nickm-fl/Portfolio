@@ -67,8 +67,8 @@ npm run build
 
 ## **Performance**
 
-Lighthouse Score: [Add your scores]
-Core Web Vitals: [Add your metrics]
+Lighthouse Score: Performance 56, Accessibility 77, Best Practices 100, SEO 92
+Core Web Vitals:
 
 
 ## **Contact**
