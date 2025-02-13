@@ -1,6 +1,7 @@
 ---
 import SpeedInsights from '@vercel/speed-insights/astro';
 import GradientBackground from '../React/GradientBackground';
+import Analytics from '@vercel/analytics/astro'
 
 interface Props {
   title: string;
@@ -32,6 +33,7 @@ const { title } = Astro.props;
       <slot />
     </main>
     <client:only component={SpeedInsights} />
+    <client:only component={Analytics} />
   </body>
 </html>
 
