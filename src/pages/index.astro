@@ -6,9 +6,10 @@ import Contact from "@/components/contact.astro";
 import Footer from "../components/footer.astro";
 import SkillsSection from "../components/SkillsSection.astro";
 import PlatformsSection from "../components/PlatformsSection.astro";
+const pageTitle = "Nick Montelibano | Medical Device Software Consultant Minnesota";
 ---
 
-<Layout title="Nick Montelibano">
+<Layout title={pageTitle}>
   <Nav />
   <Home />
   <SkillsSection />
@@ -37,4 +38,5 @@ import PlatformsSection from "../components/PlatformsSection.astro";
       observer.observe(document.querySelector('#skills'));
     });
   </script>
+
 </Layout>
