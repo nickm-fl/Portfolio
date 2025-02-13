@@ -15,4 +15,26 @@ import PlatformsSection from "../components/PlatformsSection.astro";
   <PlatformsSection />
   <Contact />
   <Footer />
+  
+  <!-- Defer loading of heavy JS components -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loadDeferredComponents = () => {
+        import('../React/NodeSphere.tsx');
+        import('../React/SystemFlowDiagram.tsx');
+      };
+      
+      // Load components when they're about to be in view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadDeferredComponents();
+            observer.disconnect();
+          }
+        });
+      });
+      
+      observer.observe(document.querySelector('#skills'));
+    });
+  </script>
 </Layout>

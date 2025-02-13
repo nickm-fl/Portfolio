@@ -1,5 +1,6 @@
 ---
 import TypewriterEffect from "../React/TypewriterEffect.tsx";
+import LogoWall from "./logoWall.astro";
 ---
 
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
@@ -7,9 +8,13 @@ import TypewriterEffect from "../React/TypewriterEffect.tsx";
     <div class="text-left space-y-4">
       <div class="flex justify-center md:hidden mb-8">
         <img 
-          src="/jpg/Profile_Photo_2023_Cropped.jpg" 
-          alt="Nick Montelibano" 
+          src="/webp/Profile_Photo_2023_Cropped.webp" 
+          alt="Nick Montelibano"
+          width="128"
+          height="128" 
           class="size-40 rounded-full object-cover border-2 border-[var(--white-icon-tr)] hover:border-[var(--sec)] transition-colors duration-300"
+          loading="eager"
+          decoding="async"
         />
       </div>
       <p class="text-md md:text-lg text-[var(--white-icon)] shiny-white">
@@ -26,9 +31,13 @@ import TypewriterEffect from "../React/TypewriterEffect.tsx";
             />
           </h1>
           <img 
-            src="/jpg/Profile_Photo_2023_Cropped.jpg" 
-            alt="Nick Montelibano" 
+            src="/webp/Profile_Photo_2023_Cropped.webp" 
+            alt="Nick Montelibano"
+            width="128"
+            height="128" 
             class="hidden md:block size-20 md:size-32 rounded-full object-cover border-2 border-[var(--white-icon-tr)] hover:border-[var(--sec)] transition-colors duration-300"
+            loading="eager"
+            decoding="async"
           />
         </div>
         <p class="text-md md:text-2xl text-[var(--white-icon)]">
@@ -48,6 +57,8 @@ import TypewriterEffect from "../React/TypewriterEffect.tsx";
           </svg>
         </a>
       </div>
+    </div>
+    <LogoWall />
   </div>
 </section>
 
