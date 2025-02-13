@@ -1,0 +1,19 @@
+---
+import PlatformsShowcase from "./PlatformsShowcase.astro";
+import NodeSphere from "../React/NodeSphere.tsx";
+---
+
+<div class="flex flex-col lg:flex-row-reverse items-center gap-8">
+  <PlatformsShowcase />
+  <div class="flex justify-center w-[375px] h-[375px] md:w-[500px] md:h-[500px] pt-3 md:pt-9">
+    <NodeSphere client:load
+      nodeCount={50}
+      radius={30}
+      backgroundColor="#101010"
+      nodeColor="#A476FF"
+      activeNodeColor="#ffffff"
+      rotationSpeed={0.003}
+      connectionOpacity={0.2}
+    />
+  </div>
+</div> 

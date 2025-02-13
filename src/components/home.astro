@@ -1,8 +1,8 @@
 ---
 import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
-import SkillsList from "../React/SkillsList.tsx";
-import PlatformsShowcase from "../components/PlatformsShowcase.astro";
+import SkillsSection from "./SkillsSection.astro";
+import PlatformsSection from "./PlatformsSection.astro";
 import TypewriterEffect from "../React/TypewriterEffect.tsx";
 import SystemFlowDiagram from "@/React/SystemFlowDiagram";
 import NodeSphere from "../React/NodeSphere.tsx";
@@ -56,36 +56,8 @@ import NodeSphere from "../React/NodeSphere.tsx";
       </div>
 
     <LogoWall />
-  
-    <div class="flex flex-col lg:flex-row items-center gap-8">
-      <SkillsList client:load />
-      <div class="flex justify-center w-[300px] h-[300px] md:w-[400px] md:h-[400px] pt-3 md:pt-9 md:ml-16">
-        <SystemFlowDiagram client:load
-          nodeCount={15}
-          backgroundColor="#101010"
-          primaryColor="#A476FF"
-          secondaryColor="#5e4491"
-          pulseSpeed={0.01}
-          connectionProbability={0.3}
-          pulseSpawnRate={0.0005}
-        />
-      </div>
-    </div>
-
-    <div class="flex flex-col lg:flex-row-reverse items-center gap-8">
-      <PlatformsShowcase />
-      <div class="flex justify-center w-[375px] h-[375px] md:w-[500px] md:h-[500px] pt-3 md:pt-9">
-        <NodeSphere client:load
-          nodeCount={50}
-          radius={30}
-          backgroundColor="#101010"
-          nodeColor="#A476FF"
-          activeNodeColor="#ffffff"
-          rotationSpeed={0.003}
-          connectionOpacity={0.2}
-        />
-      </div>
-    </div>
+    <SkillsSection />
+    <PlatformsSection />
   </div>
 </section>
 
