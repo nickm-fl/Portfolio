@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const CategoryIcons = {
   "System Architecture": (
@@ -8,7 +8,7 @@ const CategoryIcons = {
       fill="currentColor"
       className="w-6 h-6 text-[var(--sec)] opacity-70"
     >
-      <path d="M4 16V4H2V2H22V4H20V16H22V18H14V22H10V18H2V16H4ZM6 4V16H18V4H6ZM8 6H16V14H8V6Z" />
+      <image href="/webp/system-architecture.webp" width="24" height="24" />
     </svg>
   ),
   "Medical Device": (
@@ -18,7 +18,7 @@ const CategoryIcons = {
       fill="currentColor"
       className="w-6 h-6 text-[var(--sec)] opacity-70"
     >
-      <path d="M19 8C20.6569 8 22 9.34315 22 11V13C22 14.6569 20.6569 16 19 16H17V20H15V4H19C20.6569 4 22 5.34315 22 7V8H19ZM12 18V20H5C3.34315 20 2 18.6569 2 17V7C2 5.34315 3.34315 4 5 4H12V6H5C4.44772 6 4 6.44772 4 7V17C4 17.5523 4.44772 18 5 18H12ZM19 14C19.5523 14 20 13.5523 20 13V11C20 10.4477 19.5523 10 19 10H17V14H19ZM19 6H17V8H20C20 7.44772 19.5523 7 19 7V6ZM9 8V10H7V12H9V14H11V12H13V10H11V8H9Z" />
+      <image href="/webp/medical-device.webp" width="24" height="24" />
     </svg>
   ),
   "Embedded Systems": (
@@ -28,7 +28,7 @@ const CategoryIcons = {
       fill="currentColor"
       className="w-6 h-6 text-[var(--sec)] opacity-70"
     >
-      <path d="M8 20V14H16V20H19V4H5V20H8ZM10 20H14V16H10V20ZM21 4C21.5523 4 22 4.44772 22 5V19C22 19.5523 21.5523 20 21 20H18V22H6V20H3C2.44772 20 2 19.5523 2 19V5C2 4.44772 2.44772 4 3 4H21ZM8 7V9H16V7H8ZM8 10V12H16V10H8Z" />
+      <image href="/webp/embedded-system.webp" width="24" height="24" />
     </svg>
   ),
   "Modern Development": (
@@ -38,7 +38,7 @@ const CategoryIcons = {
       fill="currentColor"
       className="w-6 h-6 text-[var(--sec)] opacity-70"
     >
-      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+      <image href="/webp/modern-software.webp" width="24" height="24" />
     </svg>
   ),
 };
