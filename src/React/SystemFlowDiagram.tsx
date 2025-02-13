@@ -17,7 +17,6 @@ interface Pulse {
 
 const SystemFlowDiagram = ({
   nodeCount = 15,
-  backgroundColor = "#101010",
   primaryColor = "#A476FF",
   secondaryColor = "#5e4491",
   pulseSpeed = 0.02,
@@ -44,13 +43,35 @@ const SystemFlowDiagram = ({
 
   const initializeNodes = (width: number, height: number) => {
     const nodes: Node[] = [];
+    const minDistance = Math.min(width, height) * 0.1; // 10% of the smaller canvas dimension
 
     // Create nodes with random positions
     for (let i = 0; i < nodeCount; i++) {
       const radius = Math.random() * 3 + 2;
+      let x, y;
+      let validPosition = false;
+      
+      // Keep trying positions until we find one that's far enough from other nodes
+      while (!validPosition) {
+        x = Math.random() * width;
+        y = Math.random() * height;
+        validPosition = true;
+        
+        // Check distance from all existing nodes
+        for (let j = 0; j < nodes.length; j++) {
+          const dx = x - nodes[j].x;
+          const dy = y - nodes[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < minDistance) {
+            validPosition = false;
+            break;
+          }
+        }
+      }
+
       nodes.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
+        x: x!,
+        y: y!,
         radius,
         connections: [],
         pulses: [],
@@ -60,6 +81,31 @@ const SystemFlowDiagram = ({
 
     // Create connections between nodes
     for (let i = 0; i < nodes.length; i++) {
+      // If node has no connections after initial random connections,
+      // connect it to the nearest node
+      if (nodes[i].connections.length === 0) {
+        let nearestNode = -1;
+        let minDist = Infinity;
+        
+        for (let j = 0; j < nodes.length; j++) {
+          if (i !== j) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < minDist) {
+              minDist = distance;
+              nearestNode = j;
+            }
+          }
+        }
+        
+        if (nearestNode !== -1) {
+          nodes[i].connections.push(nearestNode);
+          nodes[nearestNode].connections.push(i);
+        }
+      }
+
+      // Create random connections
       for (let j = i + 1; j < nodes.length; j++) {
         if (Math.random() < connectionProbability) {
           nodes[i].connections.push(j);
@@ -80,7 +126,7 @@ const SystemFlowDiagram = ({
     ctx.clearRect(0, 0, width, height);
 
     // Draw connections
-    nodesRef.current.forEach((node, index) => {
+    nodesRef.current.forEach((node) => {
       node.connections.forEach((targetIndex) => {
         const target = nodesRef.current[targetIndex];
         ctx.beginPath();
@@ -93,8 +139,8 @@ const SystemFlowDiagram = ({
     });
 
     // Draw pulses
-    nodesRef.current.forEach((node, nodeIndex) => {
-      node.pulses.forEach((pulse, pulseIndex) => {
+    nodesRef.current.forEach((node) => {
+      node.pulses.forEach((pulse) => {
         const target = nodesRef.current[pulse.targetIndex];
         const x = node.x + (target.x - node.x) * pulse.progress;
         const y = node.y + (target.y - node.y) * pulse.progress;
@@ -122,7 +168,7 @@ const SystemFlowDiagram = ({
   };
 
   const updateSystem = () => {
-    nodesRef.current.forEach((node, nodeIndex) => {
+    nodesRef.current.forEach((node) => {
       // Update existing pulses
       node.pulses = node.pulses.filter((pulse) => {
         pulse.progress += pulseSpeed;
@@ -224,7 +270,7 @@ const SystemFlowDiagram = ({
     <div 
       ref={containerRef}
       className="relative w-full h-full" 
-      style={{ backgroundColor }}
+      style={{ backgroundColor: 'transparent' }}
     >
       <canvas ref={canvasRef} className="block w-full h-full" />
     </div>

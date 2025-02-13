@@ -23,43 +23,37 @@ const GradientBackground = () => {
 
     // Animation function
     const animate = () => {
-      time += 0.001;
+      time += 0.0005; // Slowed down movement
       
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Create multiple radial gradients
+      // Fill background with darker base color
+      ctx.fillStyle = 'hsl(260, 15%, 3%)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Create static gradients with purple and dark green
       const gradients = [
         {
-          x: Math.sin(time * 0.5) * canvas.width * 0.3 + canvas.width * 0.5,
-          y: Math.cos(time * 0.7) * canvas.height * 0.3 + canvas.height * 0.5,
+          x: Math.sin(time * 0.5) * canvas.width * 0.2 + canvas.width * 0.5,
+          y: Math.cos(time * 0.7) * canvas.height * 0.2 + canvas.height * 0.5,
           radius: canvas.width * 0.5,
-          hue: (time * 30) % 360
+          color: '#A476FF' // Purple
         },
         {
-          x: Math.cos(time * 0.6) * canvas.width * 0.3 + canvas.width * 0.5,
-          y: Math.sin(time * 0.8) * canvas.height * 0.3 + canvas.height * 0.5,
+          x: Math.cos(time * 0.6) * canvas.width * 0.2 + canvas.width * 0.5,
+          y: Math.sin(time * 0.8) * canvas.height * 0.2 + canvas.height * 0.5,
           radius: canvas.width * 0.5,
-          hue: ((time * 30) + 120) % 360
-        },
-        {
-          x: Math.sin(time * 0.7) * canvas.width * 0.3 + canvas.width * 0.5,
-          y: Math.cos(time * 0.9) * canvas.height * 0.3 + canvas.height * 0.5,
-          radius: canvas.width * 0.5,
-          hue: ((time * 30) + 240) % 360
+          color: '#2D5A27' // Dark green
         }
       ];
 
-      // Fill background with base color
-      ctx.fillStyle = 'hsl(260, 15%, 5%)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw each gradient with lower opacity
-      gradients.forEach(({ x, y, radius, hue }) => {
+      // Draw each gradient
+      gradients.forEach(({ x, y, radius, color }) => {
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-        gradient.addColorStop(0, `hsla(${hue}, 70%, 20%, 0.4)`);
-        gradient.addColorStop(0.5, `hsla(${hue}, 60%, 15%, 0.1)`);
-        gradient.addColorStop(1, 'hsla(260, 15%, 5%, 0)');
+        gradient.addColorStop(0, `${color}40`); // 25% opacity
+        gradient.addColorStop(0.5, `${color}20`); // 12% opacity
+        gradient.addColorStop(1, 'transparent');
 
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -79,7 +73,7 @@ const GradientBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full -z-10"
-      style={{ opacity: 0.7 }}
+      style={{ opacity: 1 }}
     />
   );
 };

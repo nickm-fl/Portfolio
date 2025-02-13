@@ -175,7 +175,7 @@ const NodeSphere = ({
       if (isActivatingRef.current && inactiveNodes.length > 0) {
         // Activate a random inactive node
         const randomNode = inactiveNodes[Math.floor(Math.random() * inactiveNodes.length)];
-        randomNode.activity = 1;
+        randomNode.activity = 0.51;
       } else if (!isActivatingRef.current && activeNodes.length > 0) {
         // Deactivate a random active node
         const randomNode = activeNodes[Math.floor(Math.random() * activeNodes.length)];

@@ -19,9 +19,11 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-[var(--bg)]">
+  <body class="min-h-screen">
     <GradientBackground client:load />
-    <slot />
+    <main class="relative md:px-48 lg:px-20 px-9 bg-transparent">
+      <slot />
+    </main>
     <client:only component={SpeedInsights} />
   </body>
 </html>
@@ -30,8 +32,8 @@ const { title } = Astro.props;
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
   :root {
-    --background: #101010;
-    --bg: #0a0a0a;
+    --background: transparent;
+    --bg: transparent;
 
     --sec: #A476FF;
 
@@ -87,5 +89,6 @@ const { title } = Astro.props;
 
   body {
     position: relative;
+    background-color: transparent;
   }
 </style>
