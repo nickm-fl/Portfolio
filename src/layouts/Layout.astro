@@ -1,7 +1,5 @@
 ---
-import SpeedInsights from '@vercel/speed-insights/astro';
 import GradientBackground from '../React/GradientBackground';
-import { Analytics } from '@vercel/analytics/react';
 
 interface Props {
   title: string;
@@ -51,13 +49,16 @@ const { title } = Astro.props;
       "knowsAbout": ["Medical Device Software", "Software Architecture", "Systems Engineering", "Software Consulting"]
     }
     </script>
+    <script>
+      import { inject } from "@vercel/analytics";
+      inject()
+  </script>
   </head>
   <body class="min-h-screen">
     <GradientBackground client:load />
     <main class="relative md:px-48 lg:px-20 px-9 bg-transparent">
       <slot />
     </main>
-    <Analytics />
   </body>
 </html>
 
