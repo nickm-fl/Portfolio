@@ -46,14 +46,23 @@ const mobileLinks = [
         </span>
       </a>
 
-      <div class="flex items-center gap-1">
-        <ul class="flex items-center gap-1 mr-3">
+      <div class="flex items-center gap-2">
+        <ul class="flex items-center gap-1 mr-2">
           {links.map((link) => (
             <li>
               <a href={link.href} class="nav-link">{link.label}</a>
             </li>
           ))}
         </ul>
+        <a
+          href="/Nick-Montelibano-Resume.pdf"
+          download
+          class="btn-secondary !py-2.5 !px-4 text-sm"
+          aria-label="Download résumé as a PDF"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          Résumé
+        </a>
         <a href="#contact" class="btn-primary !py-2.5 !px-5 text-sm">Let's talk</a>
       </div>
     </nav>
