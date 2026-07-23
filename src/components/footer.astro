@@ -1,106 +1,68 @@
 ---
+const year = new Date().getFullYear();
 ---
 
-<footer class="w-full py-12 border-t border-[#ffffff10]">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-      <!-- Left Column - Social Links -->
-      <div class="flex flex-col lg:items-start items-center">
-        <div class="flex space-x-6 sm:space-x-8">
-          {[
-            {
-              href: "https://www.linkedin.com/in/nick-montelibano/",
-              icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8"><path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"></path></svg>',
-              label: "LinkedIn"
-            },
-            {
-              href: "mailto:nick@fractallogic.io",
-              icon: '<svg xmlns="http://www.w3.org/2000/svg" width="2.1em" height="2.1em" viewBox="0 0 24 24"><path fill="currentColor" d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"/></svg>',
-              label: "Email"
-            }
-          ].map((link) => (
-            <a
-              href={link.href}
-              target="_blank"
-              class="flex flex-col items-center group"
-              aria-label={link.label}
-            >
-              <div class="text-[var(--white-icon)] hover:text-[var(--white)] transition-colors duration-300">
-                <div set:html={link.icon}></div>
-              </div>
-            </a>
-          ))}
+<footer class="border-t border-[var(--line)] mt-4">
+  <div class="container-site py-10 pb-28 md:pb-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="footer-mark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12h4l2-7 4 14 2-7h8" />
+          </svg>
+        </span>
+        <div class="leading-tight">
+          <p class="text-sm font-medium text-[var(--text)]">Nick Montelibano · Fractal Logic</p>
+          <p class="text-xs text-[var(--muted)]">Medical device software consulting — Minneapolis, MN</p>
         </div>
       </div>
 
-      <!-- Middle Column - SEO Text -->
-      <div class="flex flex-col items-center justify-center text-center">
-        <h2 class="text-sm font-normal text-gray-400/80 mb-1">Nick Montelibano - Medical Device Software Architecture & Consulting</h2>
-        <p class="text-xs text-gray-400/60">Independent Software Consultant in Minnesota</p>
-      </div>
+      <ul class="flex items-center gap-5 text-sm">
+        <li>
+          <a href="https://www.linkedin.com/in/nick-montelibano/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+        </li>
+        <li>
+          <a href="mailto:nick@fractallogic.io" class="footer-link">Email</a>
+        </li>
+        <li>
+          <a href="/Nick-Montelibano-Resume.pdf" download class="footer-link">Résumé</a>
+        </li>
+        <li>
+          <a href="https://github.com/nickm-fl/Portfolio" target="_blank" rel="noopener" class="footer-link">Source</a>
+        </li>
+      </ul>
+    </div>
 
-      <!-- Right Column - Tech Stack & GitHub -->
-      <div class="flex flex-col items-center lg:items-end space-y-6">
-        <div class="grid grid-cols-1 gap-2 w-full max-w-xs">
-          {[
-            {
-              desc: "View source on",
-              name: "GitHub",
-              icon: "/webp/github.webp", 
-              alt: "GitHub Logo",
-              href: "https://github.com/nickm-fl/Portfolio"
-            },
-            { 
-              desc: "Built with",
-              name: "Astro",
-              icon: "/webp/astro.webp",
-              alt: "Astro Logo"
-            },
-            {
-              desc: "Styled with",
-              name: "TailwindCSS",
-              icon: "/webp/tailwindcss.webp",
-              alt: "TailwindCSS Logo"
-            },
-            {
-              desc: "Deployed on",
-              name: "Vercel",
-              icon: "/webp/vercel.webp",
-              alt: "Vercel Logo"
-            }
-          ].map((tech) => (
-            <div class="flex items-center justify-center lg:justify-end space-x-3">
-              <span class="text-[var(--white-icon)] text-xs">{tech.desc}</span>
-              {tech.href ? (
-                <a href={tech.href} target="_blank" class="flex items-center space-x-2 text-[var(--white-icon)] hover:text-white transition-colors duration-300">
-                  <img 
-                    src={tech.icon} 
-                    alt={tech.alt} 
-                    class="h-4 w-4 object-contain filter brightness-0 invert opacity-50"
-                    loading="lazy"
-                  />
-                  <span class="text-xs">{tech.name}</span>
-                </a>
-              ) : (
-                <>
-                  <img 
-                    src={tech.icon} 
-                    alt={tech.alt} 
-                    class="h-4 w-4 object-contain filter brightness-0 invert opacity-50"
-                    loading="lazy"
-                  />
-                  <span class="text-[var(--white-icon)] text-xs">{tech.name}</span>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-    <div class="mt-8 pt-6 border-t border-[#ffffff10]">
-      <p class="text-center text-xs text-[var(--white-icon)]">
-        © 2025 Portfolio. All rights reserved.
+    <div class="mt-8 pt-6 border-t border-[var(--line)] flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-[var(--muted)]">
+        © {year} Nick Montelibano. All rights reserved.
+      </p>
+      <p class="text-xs text-[var(--muted)]">
+        Built with Astro · Deployed on Vercel · Zero client-side frameworks
       </p>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+  }
+
+  .footer-link {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .footer-link:hover {
+    color: var(--accent);
+  }
+</style>

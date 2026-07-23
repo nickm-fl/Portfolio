@@ -1,0 +1,122 @@
+---
+const areas = [
+  {
+    title: "System Architecture",
+    summary: "Systems designed to scale from prototype to production.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="8.5" y="14" width="7" height="7" rx="1.5"/><path d="M6.5 10v2a2 2 0 0 0 2 2M17.5 10v2a2 2 0 0 1-2 2"/></svg>`,
+    items: [
+      "Hardware–software interface design",
+      "Scalable software architecture",
+      "Requirements-driven development",
+      "Large-scale system design",
+    ],
+  },
+  {
+    title: "Medical Device & Regulatory",
+    summary: "Compliance built in from day one — not bolted on at the end.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.6 12 20l-7.5-7.4A5 5 0 1 1 12 6.3a5 5 0 1 1 7.5 6.3"/><path d="M7 12h3l1.5-3 2 5L15 12h2"/></svg>`,
+    items: [
+      "IEC 62304 compliance expertise",
+      "FDA submission documentation",
+      "First-in-human trials through market release",
+      "Risk-based design & FMEA",
+    ],
+  },
+  {
+    title: "Embedded Systems",
+    summary: "Reliable firmware where resources are scarce and failure isn't an option.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>`,
+    items: [
+      "Real-time system development",
+      "Resource-constrained optimization",
+      "Bare-metal programming",
+      "RTOS implementation",
+    ],
+  },
+  {
+    title: "Modern Development",
+    summary: "Startup velocity with medical-grade rigor.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 6h4a2 2 0 0 1 2 2v1M9 18h4a2 2 0 0 0 2-2v-1"/></svg>`,
+    items: [
+      "CI/CD pipeline implementation",
+      "Automated testing frameworks",
+      "Modern toolchain integration",
+      "Rapid prototyping practices",
+    ],
+  },
+];
+---
+
+<section id="expertise" class="py-20 md:py-28">
+  <div class="container-site">
+    <div class="max-w-2xl mb-12" data-reveal>
+      <p class="eyebrow mb-4">Expertise</p>
+      <h2 class="text-3xl md:text-5xl font-semibold leading-tight mb-4">
+        Deep experience where it counts
+      </h2>
+      <p class="text-[var(--muted)] text-lg leading-relaxed">
+        Medical device software demands both engineering depth and regulatory
+        fluency. I bring both — so your team isn't translating between them.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      {areas.map((area, i) => (
+        <article class="glass expertise-card p-7" data-reveal style={`--reveal-delay: ${i * 80}ms;`}>
+          <div class="card-icon" set:html={area.icon} />
+          <h3 class="text-xl font-semibold mt-5 mb-1.5">{area.title}</h3>
+          <p class="text-[var(--muted)] text-[0.95rem] mb-5">{area.summary}</p>
+          <ul class="space-y-2.5">
+            {area.items.map((item) => (
+              <li class="flex items-start gap-2.5 text-[0.92rem] text-[var(--text)]/85">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="mt-1 shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .expertise-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .expertise-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(45, 212, 191, 0.45),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .expertise-card:hover::before {
+    opacity: 1;
+  }
+  .expertise-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+  }
+</style>

@@ -1,23 +1,85 @@
 ---
-import PlatformsShowcase from "./PlatformsShowcase.astro";
-import NodeSphere from "../React/NodeSphere.tsx";
+const platforms = [
+  {
+    name: "Microcontrollers",
+    icon: "/webp/microcontroller.webp",
+    description: "STM32, ESP32, nRF52 — bare metal and RTOS",
+  },
+  {
+    name: "Embedded Linux",
+    icon: "/webp/linux.webp",
+    description: "Yocto-class embedded builds and desktop Linux",
+  },
+  {
+    name: "Mobile",
+    icon: "/svg/mobile.svg",
+    description: "iOS & Android companion apps",
+  },
+  {
+    name: "Windows",
+    icon: "/webp/windows.webp",
+    description: ".NET desktop applications",
+  },
+  {
+    name: "Web",
+    icon: "/webp/web.webp",
+    description: "React, Astro, Blazor frontends",
+  },
+  {
+    name: "Cloud",
+    icon: "/svg/cloud.svg",
+    description: "AWS & GCP connected-device backends",
+  },
+];
 ---
 
-<section class="text-[var(--white)] bg-transparent" id="platforms">
-  <div class="max-w-5xl mx-auto space-y-8 py-14">
-    <div class="flex flex-col lg:flex-row-reverse items-center gap-8">
-      <PlatformsShowcase />
-      <div class="flex justify-center w-[375px] h-[375px] md:w-[500px] md:h-[500px] pt-3 md:pt-9">
-        <NodeSphere client:load
-          nodeCount={50}
-          radius={30}
-          backgroundColor="transparent"
-          nodeColor="#A476FF"
-          activeNodeColor="#ffffff"
-          rotationSpeed={0.001}
-          connectionOpacity={0.2}
-        />
-      </div>
+<section id="platforms" class="py-20 md:py-28">
+  <div class="container-site">
+    <div class="max-w-2xl mb-12" data-reveal>
+      <p class="eyebrow mb-4">Platforms</p>
+      <h2 class="text-3xl md:text-5xl font-semibold leading-tight mb-4">
+        One engineer, the whole stack
+      </h2>
+      <p class="text-[var(--muted)] text-lg leading-relaxed">
+        Connected medical devices don't stop at the firmware. I build across
+        every layer a modern device touches — so nothing gets lost at the
+        boundaries.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      {platforms.map((platform, i) => (
+        <div class="glass platform-card p-6 flex flex-col gap-3" data-reveal style={`--reveal-delay: ${i * 60}ms;`}>
+          <img
+            src={platform.icon}
+            alt=""
+            width="40"
+            height="40"
+            class="w-10 h-10 object-contain platform-icon"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <h3 class="font-semibold text-[1.05rem] mb-1">{platform.name}</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed">
+              {platform.description}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
-</section> 
+</section>
+
+<style>
+  .platform-card:hover {
+    transform: translateY(-3px);
+  }
+  .platform-icon {
+    filter: grayscale(35%);
+    transition: filter 0.3s ease;
+  }
+  .platform-card:hover .platform-icon {
+    filter: grayscale(0%);
+  }
+</style>

@@ -1,80 +1,48 @@
 # Portfolio
 
-> This is a fork of the original portfolio project by [Oscar Hernandez (Gothsec)](https://github.com/Gothsec/Portfolio)
+Personal portfolio for Nick Montelibano — independent medical device software consultant at Fractal Logic.
+Live at [nickm.software](https://nickm.software)
 
-This is my personal portfolio website built with Astro. It showcases my projects, skills, and experiences.
-View it live here: [nickm.software](https://nickm.software)
+## Features
 
-## **Features**
+- Clinical-precision design system: deep slate palette, teal accent, Space Grotesk + Inter typography
+- Animated ECG trace, scroll-reveal micro-interactions, and glass-surface cards — all CSS/vanilla JS
+- Zero client-side frameworks: no React, no hydration, minimal JavaScript
+- Fully responsive with a bottom tab bar on mobile
+- Accessible: semantic landmarks, skip link, focus-visible states, `prefers-reduced-motion` support
+- SEO: Open Graph/Twitter cards, JSON-LD structured data, canonical URLs
 
-- 🚀 Modern and responsive design
-- 💻 Project showcase with detailed descriptions
-- 🎯 Skills and expertise section
-- 📱 Mobile-first approach
-- ⚡ Fast loading and optimized performance
-- 🎨 Custom animations and interactive elements
-
-## **Stack**
-
-### **Frontend**
+## Stack
 
 ![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
-
-### **Hosting**
-
 ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
-### **Development**
-
-![Cursor](https://img.shields.io/badge/Cursor-000000?logo=cursor&logoColor=white)
-![Claude](https://img.shields.io/badge/Claude-38B2AC?logo=anthropic&logoColor=white)
-
-## **Project structure**
+## Project structure
 
 ```
 public/
-└── svg/
+├── svg/        # tech logos
+└── webp/       # optimized images
 src/
-├── Components/
-├── layouts/
-├── React/
-└── pages/
+├── components/ # page sections (hero, expertise, process, platforms, contact, footer, nav)
+├── layouts/    # base layout + design tokens/global CSS
+└── pages/      # index
 ```
 
-## **Getting Started**
+## Getting started
 
-1. Clone the repository
-```bash
-git clone https://github.com/nickm-fl/portfolio.git
-```
-
-2. Install dependencies
 ```bash
 npm install
+npm run dev      # dev server at localhost:4321
+npm run build    # type-check + production build
 ```
 
-3. Run the development server
-```bash
-npm run dev
-```
+## Contact
 
-4. Build for production
-```bash
-npm run build
-```
+Nick Montelibano — nick@fractallogic.io
 
-## **Performance**
+## Acknowledgments
 
-Lighthouse Score: Performance 56, Accessibility 77, Best Practices 100, SEO 92
-Core Web Vitals:
-
-
-## **Contact**
-
-Nick Montelibano - nick@fractallogic.io
-
-## **Acknowledgments**
-
-Original template by [Oscar Hernandez (Gothsec)](https://github.com/Gothsec/Portfolio)
+Originally forked from a template by [Oscar Hernandez (Gothsec)](https://github.com/Gothsec/Portfolio); since fully redesigned.
