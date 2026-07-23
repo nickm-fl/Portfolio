@@ -1,105 +1,173 @@
 ---
-interface NavItem {
-  label: string;
-  href: string;
-  icon: string;
-}
+const links = [
+  { label: "Expertise", href: "#expertise" },
+  { label: "Process", href: "#process" },
+  { label: "Platforms", href: "#platforms" },
+];
 
-const navItems: NavItem[] = [
+// Mobile bottom tab bar
+const mobileLinks = [
   {
     label: "Home",
     href: "#home",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM19 19V9.97815L12 4.53371L5 9.97815V19H19Z"></path></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>`,
   },
   {
-    label: "Skills",
-    href: "#skills",
-    icon: `<img src="/webp/skills.webp" width="24" height="24" />`,
+    label: "Expertise",
+    href: "#expertise",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
   },
   {
     label: "Platforms",
     href: "#platforms",
-    icon: `<img src="/webp/platforms.webp" width="24" height="24" />`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>`,
   },
   {
     label: "Contact",
     href: "#contact",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>`,
   },
 ];
 ---
 
-<div class="flex justify-center w-full">
-  <nav class="fixed flex left-0 right-0 z-[100] bg-[#1414149c] border border-1 border-[var(--white-icon-tr)] backdrop-blur-xl transition-all md:top-0 md:bottom-auto bottom-0 md:w-[33rem] rounded-t-2xl md:rounded-full md:mt-6 md:justify-self-center">  
-    <div class="container mx-auto flex justify-center items-center p-3">
-      <ul class="flex w-full justify-between md:space-x-6 md:justify-center md:gap-12 gap-6">
-        {
-          navItems.map((item) => (
-            <li class="flex-1 md:flex-none">
-              <a
-                href={item.href}
-                class="flex flex-col items-center gap-1 text-[var(--white-icon)] transition-colors text-xs md:text-base"
-              >
-                <span class="md:hidden flex items-center justify-center w-6 h-6">
-                  <fragment set:html={item.icon} />
-                </span>
-                <span class="hidden md:inline-block">{item.label}</span>
-                <span class="md:hidden">{item.label}</span>
-              </a>
+<!-- Desktop top bar -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-[100] hidden md:block transition-all duration-300">
+  <div class="container-site">
+    <nav class="flex items-center justify-between py-4" aria-label="Primary">
+      <a href="#home" class="brand flex items-center gap-3 no-underline">
+        <span class="brand-mark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12h4l2-7 4 14 2-7h8" />
+          </svg>
+        </span>
+        <span class="flex flex-col leading-tight">
+          <span class="text-[var(--text)] font-semibold text-[0.95rem]" style="font-family: var(--font-display);">Nick Montelibano</span>
+          <span class="text-[var(--muted)] text-[0.7rem] tracking-[0.14em] uppercase">Fractal Logic</span>
+        </span>
+      </a>
+
+      <div class="flex items-center gap-1">
+        <ul class="flex items-center gap-1 mr-3">
+          {links.map((link) => (
+            <li>
+              <a href={link.href} class="nav-link">{link.label}</a>
             </li>
-          ))
-        }
-      </ul>
-    </div>
-  </nav>
-</div>
+          ))}
+        </ul>
+        <a href="#contact" class="btn-primary !py-2.5 !px-5 text-sm">Let's talk</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile bottom tab bar -->
+<nav
+  class="md:hidden fixed bottom-0 left-0 right-0 z-[100] mobile-bar"
+  aria-label="Primary mobile"
+>
+  <ul class="flex justify-around items-stretch">
+    {mobileLinks.map((item) => (
+      <li class="flex-1">
+        <a href={item.href} class="mobile-link flex flex-col items-center gap-1 py-2.5 text-[0.68rem]">
+          <fragment set:html={item.icon} />
+          <span>{item.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
 
 <script>
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e: Event) {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLAnchorElement;
-      const targetId = target.getAttribute("href")?.substring(1) || "";
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-    });
-  });
+  // Solidify the header once the page is scrolled
+  const header = document.getElementById("site-header");
+  const onScroll = () => {
+    if (!header) return;
+    header.classList.toggle("scrolled", window.scrollY > 24);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 
+  // Highlight the nav item for the section in view
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav a[href^='#']");
-    const observerOptions = { threshold: 0.6 };
+    const navLinks = document.querySelectorAll("nav a[href^='#'], header a[href^='#']");
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => link.classList.remove("active"));
-          const id = entry.target.getAttribute("id");
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-          if (activeLink) {
-            activeLink.classList.add("active");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === `#${id}`
+              );
+            });
           }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+        });
+      },
+      { threshold: 0.4 }
+    );
     sections.forEach((section) => observer.observe(section));
   });
 </script>
 
 <style>
-  @media (max-width: 767px) {
-    body {
-      padding-bottom: 70px;
-    }
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(45, 212, 191, 0.25);
   }
-  
-  nav a.active {
-    color: white !important;
+
+  #site-header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  #site-header.scrolled {
+    background: rgba(7, 12, 16, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.6rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s ease, background-color 0.25s ease;
+  }
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--card);
+  }
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .mobile-bar {
+    background: rgba(7, 12, 16, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-link {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .mobile-link.active,
+  .mobile-link:hover {
+    color: var(--accent);
   }
 </style>

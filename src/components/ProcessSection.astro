@@ -1,0 +1,124 @@
+---
+const steps = [
+  {
+    num: "01",
+    title: "Discover",
+    body: "Intended use, requirements, risk classification, and regulatory strategy — aligned before a line of code is written.",
+  },
+  {
+    num: "02",
+    title: "Architect",
+    body: "System design and hardware–software interfaces, with traceability from every requirement to its test.",
+  },
+  {
+    num: "03",
+    title: "Build",
+    body: "Disciplined implementation: code review, CI/CD, and automated coverage from the very first commit.",
+  },
+  {
+    num: "04",
+    title: "Verify & Validate",
+    body: "Automated test frameworks and the V&V evidence your submission depends on — produced as you go, not after.",
+  },
+  {
+    num: "05",
+    title: "Launch & Support",
+    body: "Submission support, post-market maintenance, and a codebase your team can carry forward without me.",
+  },
+];
+---
+
+<section id="process" class="py-20 md:py-28">
+  <div class="container-site">
+    <div class="max-w-2xl mb-14" data-reveal>
+      <p class="eyebrow mb-4">Process</p>
+      <h2 class="text-3xl md:text-5xl font-semibold leading-tight mb-4">
+        From concept to clearance
+      </h2>
+      <p class="text-[var(--muted)] text-lg leading-relaxed">
+        A development process shaped by the V-model and a decade of taking
+        regulated products to market — without giving up modern velocity.
+      </p>
+    </div>
+
+    <ol class="process-track grid md:grid-cols-5 gap-8 md:gap-4">
+      {steps.map((step, i) => (
+        <li class="process-step" data-reveal style={`--reveal-delay: ${i * 90}ms;`}>
+          <div class="step-marker">
+            <span class="step-num">{step.num}</span>
+          </div>
+          <h3 class="text-lg font-semibold mt-4 mb-2">{step.title}</h3>
+          <p class="text-[var(--muted)] text-[0.9rem] leading-relaxed">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-track {
+    position: relative;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .step-marker {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+    flex-shrink: 0;
+  }
+
+  /* Connecting line between steps on desktop */
+  @media (min-width: 768px) {
+    .step-marker::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin-left: 12px;
+      background: linear-gradient(90deg, var(--line-strong), var(--line));
+    }
+    .process-step:last-child .step-marker::after {
+      display: none;
+    }
+  }
+
+  /* Vertical connector on mobile */
+  @media (max-width: 767px) {
+    .process-step {
+      position: relative;
+      padding-left: 62px;
+    }
+    .process-step .step-marker {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .process-step h3 {
+      margin-top: 0;
+    }
+    .process-step:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 23px;
+      top: 52px;
+      bottom: -26px;
+      width: 1px;
+      background: var(--line);
+    }
+  }
+</style>

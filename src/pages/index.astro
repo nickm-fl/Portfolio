@@ -2,41 +2,24 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/nav.astro";
 import Home from "../components/home.astro";
-import Contact from "@/components/contact.astro";
-import Footer from "../components/footer.astro";
-import SkillsSection from "../components/SkillsSection.astro";
+import ExpertiseSection from "../components/ExpertiseSection.astro";
+import ProcessSection from "../components/ProcessSection.astro";
 import PlatformsSection from "../components/PlatformsSection.astro";
-const pageTitle = "Nick Montelibano | Medical Device Software Consultant Minnesota";
+import Contact from "../components/contact.astro";
+import Footer from "../components/footer.astro";
+
+const pageTitle =
+  "Nick Montelibano — Medical Device Software Consultant | Fractal Logic";
 ---
 
 <Layout title={pageTitle}>
   <Nav />
-  <Home />
-  <SkillsSection />
-  <PlatformsSection />
-  <Contact />
+  <main>
+    <Home />
+    <ExpertiseSection />
+    <ProcessSection />
+    <PlatformsSection />
+    <Contact />
+  </main>
   <Footer />
-  
-  <!-- Defer loading of heavy JS components -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const loadDeferredComponents = () => {
-        import('../React/NodeSphere.tsx');
-        import('../React/SystemFlowDiagram.tsx');
-      };
-      
-      // Load components when they're about to be in view
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            loadDeferredComponents();
-            observer.disconnect();
-          }
-        });
-      });
-      
-      observer.observe(document.querySelector('#skills'));
-    });
-  </script>
-
 </Layout>
