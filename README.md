@@ -1,12 +1,12 @@
 # Portfolio
 
-Personal portfolio for Nick Montelibano — independent medical device software consultant at Fractal Logic.
+Personal portfolio for Nick Montelibano, independent medical device software consultant at Fractal Logic.
 Live at [nickm.software](https://nickm.software)
 
 ## Features
 
 - Clinical-precision design system: deep slate palette, teal accent, Space Grotesk + Inter typography
-- Animated ECG trace, scroll-reveal micro-interactions, and glass-surface cards — all CSS/vanilla JS
+- Animated ECG trace, scroll-reveal micro-interactions, and glass-surface cards, all in CSS/vanilla JS
 - Zero client-side frameworks: no React, no hydration, minimal JavaScript
 - Fully responsive with a bottom tab bar on mobile
 - Accessible: semantic landmarks, skip link, focus-visible states, `prefers-reduced-motion` support
@@ -41,7 +41,7 @@ npm run build    # type-check + production build
 
 ## Contact
 
-Nick Montelibano — nick@fractallogic.io
+Nick Montelibano · nick@fractallogic.io
 
 ## Acknowledgments
 
