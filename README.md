@@ -5,12 +5,28 @@ Live at [nickm.software](https://nickm.software)
 
 ## Features
 
-- Clinical-precision design system: deep slate palette, teal accent, Space Grotesk + Inter typography
+- Dark slate palette with a teal accent, set in Inter, with the Fractal Logic lockup in Space Grotesk
 - Animated ECG trace, scroll-reveal micro-interactions, and glass-surface cards, all in CSS/vanilla JS
 - Zero client-side frameworks: no React, no hydration, minimal JavaScript
 - Fully responsive with a bottom tab bar on mobile
 - Accessible: semantic landmarks, skip link, focus-visible states, `prefers-reduced-motion` support
 - SEO: Open Graph/Twitter cards, JSON-LD structured data, canonical URLs
+
+## Brand
+
+The Fractal Logic identity lives in `src/components/BrandLockup.astro`. One prop
+drives it, `size`, the wordmark's font-size in px. The mark, the gap and the
+clear space are all computed from that, so never hard-code a gap.
+
+Rules that came with the identity:
+
+- Space Grotesk 500 is the wordmark and nothing else. Headings use Inter.
+- The full lockup needs 135px of width. Below that, use the mark alone.
+- At 16px and under, the mark switches to its two-cut favicon shape.
+  `BrandLockup` does that on its own.
+- Never stretch, rotate, round or stroke the mark.
+
+The accent follows this site's palette instead of the `#9184d9` in the handoff.
 
 ## Stack
 

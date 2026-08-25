@@ -1,5 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Fractal Logic">
+  <title>Fractal Logic</title>
   <rect width="32" height="32" rx="7" fill="#0d141b"/>
-  <rect width="32" height="32" rx="7" fill="none" stroke="#2dd4bf" stroke-opacity="0.35" stroke-width="1"/>
-  <path d="M4 16h6l2.5-8 5 16 2.5-8h8" fill="none" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" fill="none" stroke="#2dd4bf" stroke-opacity="0.35"/>
+  <!-- Favicon cut: solid island, per the identity handoff (three cuts blur below 16px). -->
+  <g transform="translate(4 4) scale(0.375)" fill="#2dd4bf" fill-rule="evenodd">
+    <path d="M32 0H64V64H0V32H32Z"/>
+    <path d="M0 0H16V16H0Z"/>
+  </g>
 </svg>

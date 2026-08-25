@@ -1,4 +1,6 @@
 ---
+import BrandLockup from "./BrandLockup.astro";
+
 const links = [
   { label: "Expertise", href: "#expertise" },
   { label: "Process", href: "#process" },
@@ -33,17 +35,10 @@ const mobileLinks = [
 <!-- Desktop top bar -->
 <header id="site-header" class="fixed top-0 left-0 right-0 z-[100] hidden md:block transition-all duration-300">
   <div class="container-site">
-    <nav class="flex items-center justify-between py-4" aria-label="Primary">
-      <a href="#home" class="brand flex items-center gap-3 no-underline">
-        <span class="brand-mark" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 12h4l2-7 4 14 2-7h8" />
-          </svg>
-        </span>
-        <span class="flex flex-col leading-tight">
-          <span class="text-[var(--text)] font-semibold text-[0.95rem]" style="font-family: var(--font-display);">Nick Montelibano</span>
-          <span class="text-[var(--muted)] text-[0.7rem] tracking-[0.14em] uppercase">Fractal Logic</span>
-        </span>
+    <nav class="flex items-center justify-between py-3" aria-label="Primary">
+      <a href="#home" class="brand">
+        <span class="brand-name">Nick Montelibano</span>
+        <BrandLockup size={20} />
       </a>
 
       <div class="flex items-center gap-2">
@@ -122,16 +117,25 @@ const mobileLinks = [
 </script>
 
 <style>
-  .brand-mark {
+  .brand {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid rgba(45, 212, 191, 0.25);
+    flex-direction: column;
+    align-items: flex-start;
+    /* Clear space is 0.5 x mark (8.5px at size 20). Nothing may enter it. */
+    gap: 0.625rem;
+    text-decoration: none;
+    transition: opacity 0.25s ease;
+  }
+  .brand:hover {
+    opacity: 0.82;
+  }
+
+  .brand-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text);
   }
 
   #site-header {

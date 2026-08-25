@@ -15,6 +15,9 @@ const ogImage = new URL("/webp/Profile_Photo_Square.webp", Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#070c10" />
     <title>{title}</title>
@@ -43,7 +46,7 @@ const ogImage = new URL("/webp/Profile_Photo_Square.webp", Astro.site);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500&display=swap"
     />
     <link rel="preload" as="image" href="/webp/Profile_Photo_Square.webp" />
 
@@ -131,7 +134,18 @@ const ogImage = new URL("/webp/Profile_Photo_Square.webp", Astro.site);
     --text: #e8eef4;
     --muted: #93a4b8;
     --font-body: "Inter", system-ui, -apple-system, sans-serif;
-    --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+    /* Headings. Space Grotesk is reserved for the wordmark, so the display
+       face is Inter with tighter tracking. */
+    --font-display: "Inter", system-ui, -apple-system, sans-serif;
+
+    /* Fractal Logic identity. Ratios and type are fixed by the identity
+       handoff; the accent follows the site palette rather than the sheet's
+       #9184d9. */
+    --fl-accent: var(--accent);
+    --fl-word: var(--text);
+    --fl-wordmark-font: "Space Grotesk", system-ui, sans-serif;
+    --fl-wordmark-weight: 500;
+    --fl-wordmark-tracking: -0.025em;
   }
 
   * {

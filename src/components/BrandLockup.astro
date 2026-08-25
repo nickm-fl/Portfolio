@@ -1,0 +1,99 @@
+---
+/**
+ * Fractal Logic lockup: inline mark + live text.
+ *
+ * Every dimension derives from one input, `size` (the wordmark font-size in px),
+ * per the identity handoff: mark = 0.85 x size, gap = 0.44 x mark (0.36 stacked),
+ * clear space = 0.5 x mark. Never hard-code a gap.
+ *
+ * The mark is inlined rather than an <img> so it inherits currentColor and the
+ * name stays selectable, translatable and crisp.
+ */
+interface Props {
+  /** Wordmark font-size in px. Drives the mark size and gap. Min 19 for the full lockup. */
+  size?: number;
+  /** Mark above the words, flush left. For narrow columns. */
+  stacked?: boolean;
+  /** Renders as a link when set. */
+  href?: string;
+  /** Mark without the wordmark. Only where the name is already present. */
+  markOnly?: boolean;
+  class?: string;
+}
+
+const {
+  size = 20,
+  stacked = false,
+  href,
+  markOnly = false,
+  class: className,
+} = Astro.props;
+
+const BODY = "M32 0H64V64H0V32H32Z";
+const ISLAND = "M8 0H16V16H0V8H8Z";
+// At 16px and below the third cut lands on a sub-pixel and blurs to a hairline.
+const FAVICON_ISLAND = "M0 0H16V16H0Z";
+
+const markSize = size * 0.85;
+const island = markSize <= 16 ? FAVICON_ISLAND : ISLAND;
+
+const Tag = href ? "a" : "span";
+---
+
+<Tag
+  class:list={["fl-lockup", { "fl-lockup--stacked": stacked }, className]}
+  style={`--fl-size: ${size}px`}
+  href={href}
+>
+  <svg
+    viewBox="0 0 64 64"
+    fill="currentColor"
+    fill-rule="evenodd"
+    focusable="false"
+    role={markOnly ? "img" : undefined}
+    aria-label={markOnly ? "Fractal Logic" : undefined}
+    aria-hidden={markOnly ? undefined : "true"}
+  >
+    <path d={BODY} />
+    <path d={island} />
+  </svg>
+  {!markOnly && <span class="fl-word">Fractal Logic</span>}
+</Tag>
+
+<style>
+  .fl-lockup {
+    --fl-mark: calc(var(--fl-size) * 0.85);
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--fl-mark) * 0.44);
+    font-family: var(--fl-wordmark-font);
+    font-weight: var(--fl-wordmark-weight);
+    font-size: var(--fl-size);
+    line-height: 1;
+    letter-spacing: var(--fl-wordmark-tracking);
+    white-space: nowrap;
+    color: var(--fl-word);
+    text-decoration: none;
+  }
+
+  .fl-lockup > svg {
+    width: var(--fl-mark);
+    height: var(--fl-mark);
+    flex: none;
+    color: var(--fl-accent);
+  }
+
+  /* Stacked: narrow columns, slide covers, card fronts. */
+  .fl-lockup--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(var(--fl-mark) * 0.36);
+  }
+
+  a.fl-lockup {
+    transition: opacity 0.25s ease;
+  }
+  a.fl-lockup:hover {
+    opacity: 0.82;
+  }
+</style>

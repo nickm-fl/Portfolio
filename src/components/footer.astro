@@ -1,20 +1,17 @@
 ---
+import BrandLockup from "./BrandLockup.astro";
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[var(--line)] mt-4">
   <div class="container-site py-10 pb-28 md:pb-10">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <span class="footer-mark" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 12h4l2-7 4 14 2-7h8" />
-          </svg>
-        </span>
-        <div class="leading-tight">
-          <p class="text-sm font-medium text-[var(--text)]">Nick Montelibano · Fractal Logic</p>
-          <p class="text-xs text-[var(--muted)]">Medical device software consulting · Minneapolis, MN</p>
-        </div>
+      <div class="flex flex-col items-center md:items-start gap-2.5">
+        <BrandLockup size={20} />
+        <p class="text-xs text-[var(--muted)]">
+          Nick Montelibano · Medical device software consulting · Minneapolis, MN
+        </p>
       </div>
 
       <ul class="flex items-center gap-5 text-sm">
@@ -45,18 +42,6 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .footer-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-    color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid rgba(45, 212, 191, 0.22);
-  }
-
   .footer-link {
     color: var(--muted);
     text-decoration: none;
